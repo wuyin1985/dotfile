@@ -1,4 +1,7 @@
 #第一次需要执行下面几行进行安装
+#Install-Module -Name PackageManagement -Repository PSGallery -Force
+#Install-Module -Name PowerShellGet -Repository PSGallery -Force
+#Install-Module -Name PSReadLine -AllowPrerelease -Force
 #Install-Module -Name PSFzf 
 #Install-Module -Name PSEverything
 
