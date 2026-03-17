@@ -1,0 +1,3 @@
+pwsh -Command "Z ff;exit"
+pwsh -Command "z work;exit"
+pwsh -Command "svnc .;exit"

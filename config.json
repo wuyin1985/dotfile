@@ -1,0 +1,10 @@
+﻿[
+  {
+    "source": "powershell/Microsoft.PowerShell_profile.ps1",
+    "target": "$PROFILE"
+  },
+  {
+    "source": "yazi/config",
+    "target": "$env:APPDATA/yazi/config"
+  }
+]

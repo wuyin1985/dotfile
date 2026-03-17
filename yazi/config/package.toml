@@ -1,0 +1,19 @@
+[[plugin.deps]]
+use = "WhoSowSee/whoosh"
+rev = "cba7239"
+hash = "aa11ba1ef00513ad3217cd9fa561c71c"
+
+[[plugin.deps]]
+use = "AnirudhG07/custom-shell"
+rev = "b04213d"
+hash = "84e7feb00e7a2a7eac2540085011b47e"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-frappe"
+rev = "9cd2ac4"
+hash = "b5e0a30e0441f32a7c4508a2e6490ce"
+
+[[flavor.deps]]
+use = "956MB/vscode-light-modern"
+rev = "c054b12"
+hash = "dab0020baf1e1ecbc92bc2830f839914"

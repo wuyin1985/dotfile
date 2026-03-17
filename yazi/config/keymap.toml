@@ -1,0 +1,50 @@
+# If you also using Yazi on Windows:
+[[mgr.prepend_keymap]]
+on   = "!"
+for  = "windows"
+run  = 'shell "pwsh.exe" --block'
+desc = "Open PowerShell here"
+
+[[mgr.prepend_keymap]]
+on   = [ "i" ]
+run = "plugin easyjump"
+desc = "easyjump"
+
+
+[[mgr.prepend_keymap]]
+on = [ ":" ]
+run = 'plugin custom-shell -- pwsh --interactive --block'
+desc = "powershell as default with specified arguments"
+
+
+[[mgr.prepend_keymap]]
+on = [ "'", "1" ]
+run = "plugin custom-shell -- custom pwsh 'svnc .' --orphan"
+desc = "Run svn commit"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "e" ]
+run = 'shell -- start F:\TotalCommand\TotalCMD64.exe "%0"'
+desc = "call total commander"
+
+
+[[mgr.prepend_keymap]]
+on = [ "e", "r" ]
+run = 'shell --block -- call "%0"'
+desc = "call bat or exe"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "t" ]
+run = 'shell -- start wt -d "%0"'
+desc = "new terminal"
+
+
+[[mgr.prepend_keymap]]
+on = [ "e", "z" ]
+run = "shell --block -- pwsh -command extract_here -ZipFilePath \"%0\""
+desc = "extract here"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "cd ~/AppData/Roaming/yazi"
+desc = "Cd to yazi config"
