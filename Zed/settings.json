@@ -10,11 +10,11 @@
 {
   "agent_servers": {
     "claude-acp": {
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "which_key": {
-    "enabled": true
+    "enabled": true,
   },
   "edit_predictions": {
     "provider": "zed",
@@ -58,9 +58,9 @@
     "tool_permissions": {
       "tools": {
         "copy_path": {
-          "default": "allow"
-        }
-      }
+          "default": "allow",
+        },
+      },
     },
     "default_model": {
       "provider": "copilot_chat",

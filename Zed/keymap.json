@@ -32,8 +32,6 @@
       // Search word under cursor
       "space s w": "pane::DeploySearch",
 
-      // Chat with AI
-      "alt-a": "agent::ToggleFocus",
       // Go to file with `gf`
       "g f": "editor::OpenExcerpts",
     },
@@ -96,7 +94,7 @@
       "space /": "pane::DeploySearch",
       // TODO: Open other files
       // Show project panel with current file
-      "alt-e": "pane::RevealInProjectPanel",
+      "alt-l": "pane::RevealInProjectPanel",
     },
   },
   // Empty pane, set of keybindings that are available when there is no active editor
@@ -150,6 +148,13 @@
       "ctrl-j": "workspace::ActivatePaneDown",
     },
   },
+
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-a": "agent::Toggle",
+    },
+  },
   {
     "context": "Workspace",
     "bindings": {
@@ -175,6 +180,8 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
+
+      "alt-l": "workspace::ToggleLeftDock",
     },
   },
   // Panel nagivation
