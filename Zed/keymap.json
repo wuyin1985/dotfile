@@ -64,7 +64,7 @@
       "] e": "editor::GoToDiagnostic",
       "[ e": "editor::GoToPreviousDiagnostic",
       // Symbol search
-      "s s": "outline::Toggle",
+      "alt-\\": "outline::Toggle",
       "s S": "project_symbols::Toggle",
       // Diagnostic
       "space x x": "diagnostics::Deploy",
