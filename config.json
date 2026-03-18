@@ -6,5 +6,9 @@
   {
     "source": "yazi/config",
     "target": "$env:APPDATA/yazi/config"
+  },
+  {
+    "source": "Zed",
+    "target": "$env:APPDATA/Zed"
   }
 ]
