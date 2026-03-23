@@ -8,10 +8,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "lsp_document_colors": "background",
   "vim": {
-    "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true,
   },
   "agent_servers": {
+    "qwen-code": {
+      "type": "registry"
+    },
     "claude-acp": {
       "type": "registry",
     },
@@ -97,16 +101,6 @@
     },
   },
   "languages": {
-    // Refer https://zed.dev/docs/languages/javascript and https://zed.dev/docs/languages/typescript for more info
-    "TypeScript": {
-      // Refer https://github.com/jellydn/ts-inlay-hints for how to setup for Neovim and VSCode
-      "inlay_hints": {
-        "enabled": true,
-        "show_parameter_hints": false,
-        "show_other_hints": true,
-        "show_type_hints": true,
-      },
-    },
     "Python": {
       "formatter": { "language_server": { "name": "ruff" } },
       "language_servers": ["pyright", "ruff"],

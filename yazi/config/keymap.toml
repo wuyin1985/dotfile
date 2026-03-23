@@ -24,9 +24,13 @@ desc = "Run svn commit"
 
 [[mgr.prepend_keymap]]
 on = [ "e", "e" ]
+run = 'shell -- zed "%0"'
+desc = "edit"
+
+[[mgr.prepend_keymap]]
+on = [ "e", "c" ]
 run = 'shell -- start F:\TotalCommand\TotalCMD64.exe "%0"'
 desc = "call total commander"
-
 
 [[mgr.prepend_keymap]]
 on = [ "e", "r" ]
