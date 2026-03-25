@@ -3,6 +3,8 @@ prepend_rules = [
     {url = "*.exe", use = ["open"]},
     {url = "*.bat", use = ["open"]},
     {url = "*.cmd", use = ["open"]},
+    {url = "*.xlsx", use = ["open"]},
+    {url = "*.xls", use = ["open"]},
     {url = "*.*", use = ["edit"]},
 ]
 

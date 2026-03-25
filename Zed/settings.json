@@ -13,6 +13,9 @@
     "toggle_relative_line_numbers": true,
   },
   "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    },
     "qwen-code": {
       "type": "registry"
     },

@@ -92,9 +92,7 @@
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
       // Close active panel
-      "shift-q": "pane::CloseActiveItem",
-      "ctrl-q": "pane::CloseActiveItem",
-      "space b d": "pane::CloseActiveItem",
+      "alt-w": "pane::CloseActiveItem",
       // Close other items
       "space b o": "pane::CloseOtherItems",
       // Save file
@@ -157,6 +155,8 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
+      "alt-t": "workspace::NewTerminal",
+      "alt-w": "pane::CloseActiveItem",
     },
   },
 
@@ -169,7 +169,13 @@
   {
     "context": "Workspace",
     "bindings": {
-      "ctrl-`": "workspace::ToggleBottomDock",
+      "alt-`": "workspace::ToggleBottomDock",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-r": "workspace::ToggleRightDock",
     },
   },
   // File panel (netrw)
