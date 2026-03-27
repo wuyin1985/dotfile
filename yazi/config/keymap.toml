@@ -10,17 +10,11 @@ on   = [ "i" ]
 run = "plugin easyjump"
 desc = "easyjump"
 
-
 [[mgr.prepend_keymap]]
-on = [ ":" ]
-run = 'plugin custom-shell -- pwsh --interactive --block'
-desc = "powershell as default with specified arguments"
-
-
-[[mgr.prepend_keymap]]
-on = [ "'", "1" ]
-run = "plugin custom-shell -- custom pwsh 'svnc .' --orphan"
-desc = "Run svn commit"
+on   = ":"
+for  = "windows"
+run  = 'shell --interactive --cursor=23 -- pwsh -NoLogo -Command ""'
+desc = "Run a PowerShell command"
 
 [[mgr.prepend_keymap]]
 on = [ "e", "e" ]
@@ -52,3 +46,8 @@ desc = "extract here"
 on   = [ "g", "c" ]
 run  = "cd ~/AppData/Roaming/yazi"
 desc = "Cd to yazi config"
+
+[[mgr.prepend_keymap]]
+on = [ "b", "z" ]
+run = 'shell --block "zoxide add \"$PWD\""'
+desc = "Add current directory to zoxide"

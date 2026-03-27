@@ -76,7 +76,7 @@
       "[ e": "editor::GoToPreviousDiagnostic",
       // Symbol search
       "alt-\\": "outline::Toggle",
-      "s S": "project_symbols::Toggle",
+      "alt-s": "project_symbols::Toggle",
       // Diagnostic
       "space x x": "diagnostics::Deploy",
 
@@ -122,14 +122,6 @@
     "bindings": {
       // visual, visual line & visual block modes
       "g c": "editor::ToggleComments",
-    },
-  },
-  // Better escape
-  {
-    "context": "Editor && vim_mode == insert && !menu",
-    "bindings": {
-      "j j": "vim::NormalBefore", // remap jj in insert mode to escape
-      "j k": "vim::NormalBefore", // remap jk in insert mode to escape
     },
   },
   // Rename
