@@ -22,11 +22,14 @@ function Expand-Target($t) {
         if ($null -eq $val) { return '' } else { return $val }
     })
 
-    # Replace $PROFILE with PowerShell $PROFILE value
-    $expanded = $expanded -replace '\$PROFILE', [Regex]::Escape($PROFILE) -replace '[\\]$',''
+    # Replace $PROFILE with PowerShell $PROFILE value (literal replace, avoid regex escaping the path)
+    $expanded = $expanded.Replace('$PROFILE', $PROFILE)
 
     # Normalize slashes to backslashes
-    $expanded = $expanded -replace '/', '\\'
+    $expanded = $expanded.Replace('/', '\')
+
+    # Strip trailing backslash
+    $expanded = $expanded.TrimEnd('\')
 
     return $expanded
 }

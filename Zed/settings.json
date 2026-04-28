@@ -8,16 +8,22 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "lsp_document_colors": "background",
-  "vim": {
-    "toggle_relative_line_numbers": true,
+  "gutter": {
+    "line_numbers": true,
   },
+  "lsp_document_colors": "background",
   "agent_servers": {
-    "codex-acp": {
+    "github-copilot-cli": {
       "type": "registry"
     },
+    "cursor": {
+      "type": "registry",
+    },
+    "codex-acp": {
+      "type": "registry",
+    },
     "qwen-code": {
-      "type": "registry"
+      "type": "registry",
     },
     "claude-acp": {
       "type": "registry",
@@ -65,8 +71,24 @@
   },
   // Use Copilot Chat AI as default
   "agent": {
+    "dock": "right",
     "tool_permissions": {
+      "default": "allow",
       "tools": {
+        "edit_file": {
+          "always_allow": [
+            {
+              "pattern": ".*",
+            },
+          ],
+        },
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": ".*",
+            },
+          ],
+        },
         "copy_path": {
           "default": "allow",
         },
