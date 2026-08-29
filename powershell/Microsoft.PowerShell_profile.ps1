@@ -510,9 +510,3 @@ function extract_here
         Write-Error "调用 7z 失败：$_"
     }
 }
-
-function rt
-{
-    # 调用 AHK 脚本并传递当前目录
-    & "C:\Users\Admin\AppData\Local\Microsoft\WindowsApps\AutoHotkey.exe" "C:\Users\Admin\Documents\AutoHotkey\run_right_menu.ahk" "$($PWD.Path)"
-}

@@ -3,229 +3,293 @@
   {
     "context": "Editor && !menu",
     "bindings": {
-      "ctrl-f": "buffer_search::Deploy", // vim default: page down
-      "ctrl-c": "editor::Copy", // vim default: return to normal mode
-      "ctrl-x": "editor::Cut", // vim default: decrement
-      "ctrl-v": "editor::Paste", // vim default: visual block mode
-      "ctrl-a": "editor::SelectAll", // vim default: increment
-      "ctrl-s": "workspace::Save", // vim default: show signature
+      "ctrl-f": "buffer_search::Deploy", // 搜索当前文件
+      "ctrl-c": "editor::Copy", // 复制选中内容
+      "ctrl-x": "editor::Cut", // 剪切选中内容
+      "ctrl-v": "editor::Paste", // 粘贴剪贴板内容
+      "ctrl-a": "editor::SelectAll", // 全选内容
+      "ctrl-s": "workspace::Save", // 保存文件
     },
   },
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "space": null,
+      "space": null, // 取消空格键默认绑定
     },
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
-      // put key-bindings here if you want them to work in normal & visual mode
-      // Git
-      "space g h d": "editor::ToggleSelectedDiffHunks",
-      "space g s": "git_panel::ToggleFocus",
+      // 普通和可视模式下生效的键位
+      // 兼容 IdeaVim 的 Leader 映射
+      "space z": "workspace::ToggleCenteredLayout", // 切换居中布局
+      "space c": "editor::ToggleComments", // 切换注释
 
-      // Toggle inlay hints
-      "space t i": "editor::ToggleInlayHints",
+      // Git 操作
+      "space g h d": "editor::ToggleSelectedDiffHunks", // 切换选中差异块
+      "space g s": "git_panel::ToggleFocus", // 聚焦 Git 面板
 
-      // Toggle soft wrap
-      "space u w": "editor::ToggleSoftWrap",
+      // 切换内嵌提示
+      "space t i": "editor::ToggleInlayHints", // 切换内嵌提示
 
-      // NOTE: Toggle Zen mode, not fully working yet
-      "space c z": "workspace::ToggleCenteredLayout",
+      // 切换自动换行
+      "space u w": "editor::ToggleSoftWrap", // 切换自动换行
 
-      // Open markdown preview
-      "space m p": "markdown::OpenPreview",
-      "space m P": "markdown::OpenPreviewToTheSide",
+      // 注意：切换禅模式，功能尚未完全稳定
+      "space c z": "workspace::ToggleCenteredLayout", // 切换居中布局
 
-      // Open recent project
-      "space f p": "projects::OpenRecent",
-      // Search word under cursor
-      "space s w": "pane::DeploySearch",
+      // 打开 Markdown 预览
+      "space m p": "markdown::OpenPreview", // 打开 Markdown 预览
+      "space m P": "markdown::OpenPreviewToTheSide", // 在侧边打开 Markdown 预览
 
-      // Go to file with `gf`
-      "g f": "editor::OpenExcerpts",
+      // 打开最近项目
+      "space f p": "projects::OpenRecent", // 打开最近项目
+      // 搜索光标下的单词
+      "space s w": "pane::DeploySearch", // 搜索光标下单词
+
+      // 使用 `gf` 打开文件摘录
+      "g f": "editor::OpenExcerpts", // 打开文件摘录
     },
   },
   {
     "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
     "bindings": {
-      // put key-bindings here if you want them to work only in normal mode
-      // Window movement bindings
-      // Ctrl jklk to move between panes
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
+      // 仅普通模式下生效的键位
+      // 兼容 IdeaVim 的编辑和面板映射
+      "space p": ["workspace::SendKeystrokes", "\" 0 p"], // 粘贴寄存器内容
+      "space d d": ["workspace::SendKeystrokes", "\" _ d d"], // 删除当前行
+      "ctrl-\\": "pane::SplitVertical", // 垂直拆分面板
+      "ctrl-=": "pane::JoinAll", // 合并所有面板
+      "ctrl-m": ["workspace::MoveItemToPaneInDirection", { "direction": "right" }], // 将当前项移到右侧面板
 
-      // +LSP
-      "space c a": "editor::ToggleCodeActions",
-      "space .": "editor::ToggleCodeActions",
-      "space c r": "editor::Rename",
-      "g d": "editor::GoToDefinition",
-      "g D": "editor::GoToDefinitionSplit",
-      "g i": "editor::GoToImplementation",
-      "g I": "editor::GoToImplementationSplit",
-      "g t": "editor::GoToTypeDefinition",
-      "g T": "editor::GoToTypeDefinitionSplit",
-      "g r": "editor::FindAllReferences",
-      "] d": "editor::GoToDiagnostic",
-      "[ d": "editor::GoToPreviousDiagnostic",
-      // TODO: Go to next/prev error
-      "] e": "editor::GoToDiagnostic",
-      "[ e": "editor::GoToPreviousDiagnostic",
-      // Symbol search
-      "alt-\\": "outline::Toggle",
-      "alt-s": "project_symbols::Toggle",
-      // Diagnostic
-      "space x x": "diagnostics::Deploy",
+      // 窗口移动键位
+      // 使用 Ctrl 加方向键在面板间移动
+      "ctrl-h": "workspace::ActivatePaneLeft", // 聚焦左侧面板
+      "ctrl-l": "workspace::ActivatePaneRight", // 聚焦右侧面板
+      "ctrl-k": "workspace::ActivatePaneUp", // 聚焦上方面板
+      "ctrl-j": "workspace::ActivatePaneDown", // 聚焦下方面板
 
-      // +Git
-      // Git prev/next hunk
-      "] h": "editor::GoToHunk",
-      "[ h": "editor::GoToPreviousHunk",
+      // 标签、窗口和缓冲区
+      "tab": "pane::ActivatePreviousItem", // 切换到上一个标签
+      "shift-tab": "pane::ActivateNextItem", // 切换到下一个标签
+      "space e n": "window::MoveTabToNewWindow", // 将标签移到新窗口
+      "space n": "workspace::ActivateNextPane", // 聚焦下一个面板
+      "space q": "pane::CloseActiveItem", // 关闭当前标签
+      "space q a": "workspace::CloseAllItemsAndPanes", // 关闭所有标签和面板
 
-      // TODO: git diff is not ready yet, refer https://github.com/zed-industries/zed/issues/8665#issuecomment-2194000497
+      // 方法跳转和代码折叠
+      "[ [": "vim::PreviousMethodStart", // 跳到上一个方法
+      "] ]": "vim::NextMethodStart", // 跳到下一个方法
+      "z c": "editor::Fold", // 折叠当前代码
+      "z o": "editor::UnfoldLines", // 展开当前代码
+      "space z c": "editor::FoldAll", // 折叠全部代码
+      "space z o": "editor::UnfoldAll", // 展开全部代码
 
-      // + Buffers
-      // Switch between buffers
-      "shift-h": "pane::ActivatePreviousItem",
-      "shift-l": "pane::ActivateNextItem",
-      // Close active panel
-      "alt-w": "pane::CloseActiveItem",
-      // Close other items
-      "space b o": "pane::CloseOtherItems",
-      // Save file
-      "ctrl-s": "workspace::Save",
-      // File finder
-      "space space": "file_finder::Toggle",
-      // Project search
-      "space /": "pane::DeploySearch",
-      // TODO: Open other files
-      // Show project panel with current file
-      "alt-l": "pane::RevealInProjectPanel",
+      // 重构、最近文件/位置和历史
+      "space r": "editor::ToggleCodeActions", // 打开代码操作
+      "ctrl-r": "file_finder::Toggle", // 打开文件查找
+      "space l": "pane::GoBack", // 返回上一个位置
+      "space h": "git::FileHistory", // 打开 Git 文件历史
+
+      // 诊断信息
+      "g e": "editor::GoToDiagnostic", // 跳到下一个诊断
+      "g E": "editor::GoToPreviousDiagnostic", // 跳到上一个诊断
+
+      // LSP 操作
+      "space c a": "editor::ToggleCodeActions", // 打开代码操作
+      "space .": "editor::ToggleCodeActions", // 打开代码操作
+      "space c r": "editor::Rename", // 重命名符号
+      "g d": "editor::GoToDefinition", // 跳到定义
+      "g D": "editor::GoToDefinitionSplit", // 在分栏中跳到定义
+      "g i": "editor::GoToImplementation", // 跳到实现
+      "g I": "editor::GoToImplementationSplit", // 在分栏中跳到实现
+      "g t": "editor::GoToTypeDefinition", // 跳到类型定义
+      "g T": "editor::GoToTypeDefinitionSplit", // 在分栏中跳到类型定义
+      "g r": "editor::FindAllReferences", // 查找所有引用
+      "] d": "editor::GoToDiagnostic", // 跳到下一个诊断
+      "[ d": "editor::GoToPreviousDiagnostic", // 跳到上一个诊断
+      // TODO：跳到下一个/上一个错误
+      "] e": "editor::GoToDiagnostic", // 跳到下一个错误
+      "[ e": "editor::GoToPreviousDiagnostic", // 跳到上一个错误
+      // 符号搜索
+      "alt-\\": "outline::Toggle", // 切换当前文件大纲
+      "alt-s": "project_symbols::Toggle", // 搜索项目符号
+      // 诊断面板
+      "space x x": "diagnostics::Deploy", // 打开诊断面板
+
+      // Git 操作
+      // 跳到上一个/下一个差异块
+      "] h": "editor::GoToHunk", // 跳到下一个 Git 差异块
+      "[ h": "editor::GoToPreviousHunk", // 跳到上一个 Git 差异块
+
+      // TODO：Git 差异功能尚未完善，参见 Zed issue 8665
+
+      // 缓冲区操作
+      // 在缓冲区间切换
+      "shift-h": "pane::ActivatePreviousItem", // 切换到上一个缓冲区
+      "shift-l": "pane::ActivateNextItem", // 切换到下一个缓冲区
+      // 关闭当前面板
+      "alt-w": "pane::CloseActiveItem", // 关闭当前面板项
+      // 关闭其他项目
+      "space b o": "pane::CloseOtherItems", // 关闭其他面板项
+      // 保存文件
+      "ctrl-s": "workspace::Save", // 保存文件
+      // 文件查找
+      "space space": "file_finder::Toggle", // 打开文件查找
+      // 项目搜索
+      "space /": "pane::DeploySearch", // 打开项目搜索
+      // TODO：打开其他文件
+      // 在项目面板中定位当前文件
+      "alt-l": "pane::RevealInProjectPanel", // 在项目面板中定位当前文件
     },
   },
-  // Empty pane, set of keybindings that are available when there is no active editor
+  // 空面板：没有活动编辑器时可用的键位
   {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
-      // Open file finder
-      "space space": "file_finder::Toggle",
-      // Open recent project
-      "space f p": "projects::OpenRecent",
+      // 打开文件查找
+      "space space": "file_finder::Toggle", // 打开文件查找
+      // 打开最近项目
+      "space f p": "projects::OpenRecent", // 打开最近项目
     },
   },
-  // Comment code
+  // 注释代码
   {
     "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
     "bindings": {
-      // visual, visual line & visual block modes
-      "g c": "editor::ToggleComments",
+      // 可视、可视行和可视块模式
+      "space s": ["workspace::SendKeystrokes", "\" _ s"], // 删除到行尾
+      "shift-4": ["workspace::SendKeystrokes", "g _"], // 删除到行尾并保持普通模式
+      "g c": "editor::ToggleComments", // 切换注释
     },
   },
-  // Rename
+  // 重命名
   {
     "context": "Editor && vim_operator == c",
     "bindings": {
-      "c": "vim::CurrentLine",
-      "r": "editor::Rename", // zed specific
+      "c": "vim::CurrentLine", // 选择当前行
+      "r": "editor::Rename", // 重命名符号
     },
   },
-  // Code Action
+  // 代码操作
   {
     "context": "Editor && vim_operator == c",
     "bindings": {
-      "c": "vim::CurrentLine",
-      "a": "editor::ToggleCodeActions", // zed specific
+      "c": "vim::CurrentLine", // 选择当前行
+      "a": "editor::ToggleCodeActions", // 打开代码操作
     },
   },
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "alt-t": "workspace::NewTerminal",
-      "alt-w": "pane::CloseActiveItem",
+      "ctrl-h": "workspace::ActivatePaneLeft", // 聚焦左侧面板
+      "ctrl-l": "workspace::ActivatePaneRight", // 聚焦右侧面板
+      "ctrl-k": "workspace::ActivatePaneUp", // 聚焦上方面板
+      "ctrl-j": "workspace::ActivatePaneDown", // 聚焦下方面板
+      "alt-t": "workspace::NewTerminal", // 新建终端
+      "alt-w": "pane::CloseActiveItem", // 关闭当前终端
     },
   },
 
   {
     "context": "Workspace",
     "bindings": {
-      "alt-a": "agent::Toggle",
+      // 双击 Shift：搜索项目符号
+      "shift shift": "project_symbols::Toggle", // 搜索项目符号
+      // 在 Agent（Threads）侧栏和编辑器之间切换焦点
+      "alt-shift-w": "agent::ToggleFocus", // 在 Agent 和编辑器之间切换焦点
+      "alt-a": "agent::Toggle", // 切换 Agent 侧栏
     },
   },
   {
     "context": "Workspace",
     "bindings": {
-      "alt-`": "workspace::ToggleBottomDock",
+      "alt-`": "workspace::ToggleBottomDock", // 切换底部停靠栏
     },
   },
   {
     "context": "Workspace",
     "bindings": {
-      "alt-r": "workspace::ToggleRightDock",
+      "alt-r": "workspace::ToggleRightDock", // 切换右侧停靠栏
     },
   },
-  // File panel (netrw)
+  // Agent 输出滚动
+  {
+    "context": "AcpThread",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-j": "agent::ScrollOutputLineDown", // Agent 输出向下滚动一行
+      "alt-h": "agent::ScrollOutputPageDown", // Agent 输出向下翻页
+      "alt-k": "agent::ScrollOutputLineUp", // Agent 输出向上滚动一行
+      "alt-l": "agent::ScrollOutputPageUp", // Agent 输出向上翻页
+    },
+  },
+  {
+    "context": "AcpThread > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-j": "agent::ScrollOutputLineDown", // Agent 输出向下滚动一行
+      "alt-h": "agent::ScrollOutputPageDown", // Agent 输出向下翻页
+      "alt-k": "agent::ScrollOutputLineUp", // Agent 输出向上滚动一行
+      "alt-l": "agent::ScrollOutputPageUp", // Agent 输出向上翻页
+    },
+  },
+  // 文件面板（netrw）
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
-      "a": "project_panel::NewFile",
-      "A": "project_panel::NewDirectory",
-      "r": "project_panel::Rename",
-      "d": "project_panel::Delete",
-      "x": "project_panel::Cut",
-      "c": "project_panel::Copy",
-      "p": "project_panel::Paste",
-      // Close project panel as project file panel on the right
-      "q": "workspace::ToggleRightDock",
-      "alt-e": "workspace::ToggleRightDock",
-      // Navigate between panel
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
+      "a": "project_panel::NewFile", // 新建文件
+      "A": "project_panel::NewDirectory", // 新建目录
+      "r": "project_panel::Rename", // 重命名文件或目录
+      "d": "project_panel::Delete", // 删除文件或目录
+      "x": "project_panel::Cut", // 剪切文件或目录
+      "c": "project_panel::Copy", // 复制文件或目录
+      "p": "project_panel::Paste", // 粘贴文件或目录
+  // 关闭右侧的项目文件面板
+      "q": "workspace::ToggleRightDock", // 关闭项目面板
+      "alt-e": "workspace::ToggleRightDock", // 切换右侧停靠栏
+      // 在面板间移动
+      "ctrl-h": "workspace::ActivatePaneLeft", // 聚焦左侧面板
+      "ctrl-l": "workspace::ActivatePaneRight", // 聚焦右侧面板
+      "ctrl-k": "workspace::ActivatePaneUp", // 聚焦上方面板
+      "ctrl-j": "workspace::ActivatePaneDown", // 聚焦下方面板
 
-      "alt-l": "workspace::ToggleLeftDock",
+      "alt-l": "workspace::ToggleLeftDock", // 切换左侧停靠栏
     },
   },
-  // Panel nagivation
+  // 面板导航
   {
     "context": "Dock",
     "bindings": {
-      "ctrl-w h": "workspace::ActivatePaneLeft",
-      "ctrl-w l": "workspace::ActivatePaneRight",
-      "ctrl-w k": "workspace::ActivatePaneUp",
-      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w h": "workspace::ActivatePaneLeft", // 聚焦左侧面板
+      "ctrl-w l": "workspace::ActivatePaneRight", // 聚焦右侧面板
+      "ctrl-w k": "workspace::ActivatePaneUp", // 聚焦上方面板
+      "ctrl-w j": "workspace::ActivatePaneDown", // 聚焦下方面板
     },
   },
   {
     "context": "Workspace",
     "bindings": {
-      // Map VSCode like keybindings
-      "cmd-b": "workspace::ToggleRightDock",
+      // 映射类似 VSCode 的键位
+      "cmd-b": "workspace::ToggleRightDock", // 切换右侧停靠栏
     },
   },
-  // Run nearest task
+  // 运行最近的任务
   {
     "context": "EmptyPane || SharedScreen || vim_mode == normal",
     "bindings": {
-      "space r t": ["editor::SpawnNearestTask", { "reveal": "no_focus" }],
+      "space r t": ["editor::SpawnNearestTask", { "reveal": "no_focus" }], // 运行最近的任务
     },
   },
-  // Sneak motion, refer https://github.com/zed-industries/zed/pull/22793/files#diff-90c0cb07588e2f309c31f0bb17096728b8f4e0bad71f3152d4d81ca867321c68
+  // Sneak 动作，参见 Zed pull request 22793
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
-      "s": ["vim::PushSneak", {}],
-      "S": ["vim::PushSneakBackward", {}],
+      "s": ["vim::PushSneak", {}], // 向前快速查找字符
+      "S": ["vim::PushSneakBackward", {}], // 向后快速查找字符
     },
   },
-  // Subword motion is not working really nice with `ciw`, disable for now
+  // 子词移动与 `ciw` 配合不理想，暂时禁用
   // {
   //   "context": "VimControl && !menu",
   //   "bindings": {

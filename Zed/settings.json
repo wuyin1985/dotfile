@@ -8,22 +8,22 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "gutter": {
-    "line_numbers": true,
-  },
-  "lsp_document_colors": "background",
+  "cli_default_open_behavior": "new_window",
   "agent_servers": {
     "github-copilot-cli": {
       "type": "registry"
     },
     "cursor": {
-      "type": "registry",
+      "type": "registry"
     },
     "codex-acp": {
-      "type": "registry",
+      "default_config_options": {
+        "mode": "agent-full-access"
+      },
+      "type": "registry"
     },
     "qwen-code": {
-      "type": "registry",
+      "type": "registry"
     },
     "claude-acp": {
       "type": "registry",
@@ -31,6 +31,11 @@
   },
   "which_key": {
     "enabled": true,
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
   },
   "edit_predictions": {
     "provider": "zed",
@@ -48,7 +53,7 @@
   // Vim mode settings
   "vim_mode": true,
   // use relative line numbers
-  "relative_line_numbers": "disabled",
+  "relative_line_numbers": "enabled",
   "tab_bar": {
     "show": true,
   },
@@ -71,32 +76,19 @@
   },
   // Use Copilot Chat AI as default
   "agent": {
-    "dock": "right",
+    "dock": "left",
+    "expand_terminal_card": false,
     "tool_permissions": {
       "default": "allow",
       "tools": {
-        "edit_file": {
-          "always_allow": [
-            {
-              "pattern": ".*",
-            },
-          ],
-        },
-        "terminal": {
-          "always_allow": [
-            {
-              "pattern": ".*",
-            },
-          ],
-        },
         "copy_path": {
           "default": "allow",
         },
       },
     },
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5.4",
+      "provider": "moonton",
+      "model": "gpt-5.6-sol-sub",
     },
   },
   // Uncomment below to use local AI with Ollama, refer https://zed.dev/docs/language-model-integration?highlight=ollama#using-ollama-on-macos
@@ -109,6 +101,27 @@
   //   "provider": null
   // },
   "language_models": {
+    "openai_compatible": {
+      "moonton": {
+        "api_url": "https://llm.moontontech.net/",
+        "available_models": [
+          {
+            "name": "gpt-5.6-sol-sub",
+            "max_tokens": 200000,
+            "max_output_tokens": 32000,
+            "max_completion_tokens": 200000,
+            "capabilities": {
+              "tools": true,
+              "images": true,
+              "parallel_tool_calls": true,
+              "prompt_cache_key": true,
+              "chat_completions": true,
+              "interleaved_reasoning": false
+            }
+          }
+        ]
+      }
+    },
     "ollama": {
       "api_url": "http://localhost:11434",
     },
@@ -126,6 +139,16 @@
     },
   },
   "languages": {
+    // Refer https://zed.dev/docs/languages/javascript and https://zed.dev/docs/languages/typescript for more info
+    "TypeScript": {
+      // Refer https://github.com/jellydn/ts-inlay-hints for how to setup for Neovim and VSCode
+      "inlay_hints": {
+        "enabled": true,
+        "show_parameter_hints": false,
+        "show_other_hints": true,
+        "show_type_hints": true,
+      },
+    },
     "Python": {
       "formatter": { "language_server": { "name": "ruff" } },
       "language_servers": ["pyright", "ruff"],
@@ -175,14 +198,14 @@
   // Move all panel to the right
   "project_panel": {
     "button": true,
-    "dock": "left",
+    "dock": "right",
     "git_status": true,
   },
   "outline_panel": {
     "dock": "right",
   },
   "collaboration_panel": {
-    "dock": "left",
+    "dock": "right",
   },
   // Move some unnecessary panels to the left
   "notification_panel": {
