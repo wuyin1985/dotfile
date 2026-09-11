@@ -14,6 +14,16 @@ rev = "9cd2ac4"
 hash = "b5e0a30e0441f32a7c4508a2e6490ce"
 
 [[flavor.deps]]
-use = "956MB/vscode-light-modern"
-rev = "c054b12"
-hash = "dab0020baf1e1ecbc92bc2830f839914"
+use = "gosxrgxx/flexoki-light"
+rev = "1b1e677"
+hash = "a80630a255909a511aba8a98d115bc15"
+
+[[flavor.deps]]
+use = "tomer-ben-david/neon"
+rev = "50f2e60"
+hash = "d23c566ce5c46db6dd854bf75df426e6"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-latte"
+rev = "20b47bf"
+hash = "273ee53369ccfbf7feb9b0c65e387ed8"
