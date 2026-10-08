@@ -27,6 +27,43 @@ invoke-expression (& {
 
 
 
+# 借用 zoxide 的关键字匹配跳到目标目录，然后在该目录里启动 claude
+function c
+{
+    param(
+        [Parameter(ValueFromRemainingArguments = $true, Position = 0)]
+        [string[]]$Keywords
+    )
+
+    if (-not $Keywords -or $Keywords.Count -eq 0)
+    {
+        Write-Error "用法: c <目录关键字> [更多关键字]"
+        return
+    }
+
+    $target = __zoxide_bin query "--" @Keywords
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($target))
+    {
+        Write-Error "zoxide 未找到匹配的目录: $($Keywords -join ' ')"
+        return
+    }
+
+    $target = $target.Trim()
+
+    try
+    {
+        Set-Location -LiteralPath $target -ErrorAction Stop
+    } catch
+    {
+        Write-Error "无法切换到目录 $target : $_"
+        return
+    }
+
+    Write-Host "已切换到: $target" -ForegroundColor Cyan
+    claude
+}
+
+
 function ccd()
 {
 
